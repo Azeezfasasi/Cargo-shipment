@@ -79,7 +79,7 @@ export default function MeetOurTeam() {
 
           {/* Owner Highlight */}
           <div className="bg-gray-100 p-6 rounded-lg flex flex-col items-center text-center">
-            <img
+            <Image
               src={owner.image}
               alt={owner.name}
               className="w-24 h-24 rounded-full object-cover object-center border-4 border-red-600 mb-4"

@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { Sidenav, Nav } from 'rsuite';
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import DetailIcon from '@rsuite/icons/Detail';
@@ -14,13 +13,10 @@ import GridIcon from '@rsuite/icons/Grid';
 import TagIcon from '@rsuite/icons/Tag';
 import MessageIcon from '@rsuite/icons/Message';
 import GearIcon from '@rsuite/icons/Gear';
-
-const isSuperAdmin = true;
-const isAdmin = true;
-const isAgent = true;
-const isClient = true;
+import { useProfile } from '@/context-api/ProfileContext';
 
 export default function DashHeader() {
+  const { isSuperAdmin, isAdmin, isAgent, isClient, user } = useProfile();
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -46,7 +42,8 @@ export default function DashHeader() {
   // Note: Paths should match your Next.js App Router folder structure (e.g., /dashboard/my-account)
   const menuKeyByPath = {
     '/dashboard/my-account': '1',
-    '/dashboard/all-shipments': '2',
+    '/dashboard/all-shipments': '2-1',
+    '/dashboard/all-shipments': '2-2',
     '/dashboard/my-assigned-quote': '3-1',
     '/dashboard/quote-responses': '3-2',
     '/request-quote': '3-3',
@@ -71,14 +68,8 @@ export default function DashHeader() {
   const activeKey = menuKeyByPath[pathname];
 
   const handleLogout = () => {
-    // Implement your actual logout logic here for Next.js
-    // This typically involves:
-    // 1. Clearing authentication tokens (e.g., from localStorage, cookies)
-    // 2. Making an API call to invalidate the session on the server
-    // 3. Redirecting the user to the login page or homepage
     console.log('User logged out');
     setOpenDropdown(false); // Close dropdown after logout
-    // Example redirection (requires useRouter from 'next/navigation')
     // import { useRouter } from 'next/navigation';
     // const router = useRouter();
     // router.push('/login');
@@ -125,8 +116,8 @@ export default function DashHeader() {
               height={36}
             />
             <div className='mr-4 flex flex-col items-start justify-center'>
-              <div className='text-sm font-semibold'>Azeez Fasai</div>
-              <div className='text-xs capitalize text-gray-400'>Admin</div>
+              <div className='text-sm font-semibold'>{user?.fullName || user?.name || 'NA'}</div>
+              <div className='text-xs capitalize text-gray-400'>{user.role}</div>
             </div>
             {/* Dropdown arrow icon */}
             <svg
@@ -271,43 +262,66 @@ export default function DashHeader() {
             <Nav.Item eventKey="1" icon={<DashboardIcon />} as={Link} href="/dashboard/my-account">
               Dashboard
             </Nav.Item>
-            {/* {(isSuperAdmin || isAdmin || isAgent) && ( */}
-              <Nav.Item eventKey="2" icon={<DashboardIcon />} as={Link} href="/dashboard/all-shipments">
+            {( isSuperAdmin || isAdmin || isAgent) && (
+              <Nav.Item eventKey="2-1" icon={<DashboardIcon />} as={Link} href="/dashboard/all-shipments">
                 All Shipments
               </Nav.Item>
-            {/* )} */}
-              <Nav.Menu eventKey="3" title="Quote" icon={<ListIcon />}>
+            )}
+            {isClient && (
+              <Nav.Item eventKey="2-2" icon={<DashboardIcon />} as={Link} href="/dashboard/all-shipments">
+                My Shipments
+              </Nav.Item>
+            )}
+            <Nav.Menu eventKey="3" title="Quote" icon={<ListIcon />}>
+              {(isSuperAdmin || isAdmin || isAgent) && (
+                <>
                 <Nav.Item eventKey="3-1" as={Link} href="/dashboard/my-assigned-quote">My Assigned Quotes</Nav.Item>
                 <Nav.Item eventKey="3-2" as={Link} href="/dashboard/quote-responses">Quote Responses</Nav.Item>
+                </>
+              )}
+              {isClient && (
                 <Nav.Item eventKey="3-3" as={Link} href="/request-quote">Request Quote</Nav.Item>
-              </Nav.Menu>
+              )}
+            </Nav.Menu>
+            {( isSuperAdmin || isAdmin || isAgent) && (
               <Nav.Menu eventKey="4" title="Shipments" icon={<ListIcon />}>
                 <Nav.Item eventKey="4-1" as={Link} href="/dashboard/manage-shipment">Manage Shipment</Nav.Item>
                 <Nav.Item eventKey="4-1" as={Link} href="/dashboard/create-shipment">Create Shipment</Nav.Item>
                 <Nav.Item eventKey="4-3" as={Link} href="/track-shipment">Track Shipments</Nav.Item>
               </Nav.Menu>
+            )}
+            {( isSuperAdmin || isAdmin || isAgent) && (
               <Nav.Menu eventKey="5" title="Newsletter" icon={<MessageIcon />}>
                 <Nav.Item eventKey="5-1" as={Link} href="/dashboard/send-newsletter">Send Newsletter</Nav.Item>
                 <Nav.Item eventKey="5-2" as={Link} href="/dashboard/all-newsletters">All Newsletters</Nav.Item>
                 <Nav.Item eventKey="5-3" as={Link} href="/dashboard/subscribers">Subscribers</Nav.Item>
               </Nav.Menu>
+            )}
+            {( isSuperAdmin || isAdmin || isAgent) && (
               <Nav.Menu eventKey="6" title="Blog Posts" icon={<GridIcon />}>
                 <Nav.Item eventKey="6-1" as={Link} href="/dashboard/all-posts">All Postst</Nav.Item>
                 <Nav.Item eventKey="6-2" as={Link} href="/dashboard/add-new-post">Add Blog Post</Nav.Item>
               </Nav.Menu>
+            )}
+            {( isSuperAdmin || isAdmin || isAgent) && (
               <Nav.Menu eventKey="7" title="Manage Users" icon={<PeoplesIcon />}>
                 <Nav.Item eventKey="7-1" as={Link} href="/dashboard/all-users">All Users</Nav.Item>
                 <Nav.Item eventKey="7-2" as={Link} href="/dashboard/add-new-user">Add New User</Nav.Item>
                 <Nav.Item eventKey="7-3" as={Link} href="/dashboard/change-user-password">Change User Password</Nav.Item>
               </Nav.Menu>
+            )}
               <Nav.Menu eventKey="8" title="Appointments" icon={<PeoplesIcon />}>
                 <Nav.Item eventKey="8-1" as={Link} href="/dashboard/my-account">My Appointments</Nav.Item>
                 <Nav.Item eventKey="8-2" as={Link} href="/dashboard/my-account">Book Appointment</Nav.Item>
+                {( isSuperAdmin || isAdmin || isAgent) && (
                   <Nav.Item eventKey="8-3" as={Link} href="/dashboard/my-account">All Appointments</Nav.Item>
+                )}
               </Nav.Menu>
+              {( isSuperAdmin || isAdmin || isAgent) && (
               <Nav.Item eventKey="9" icon={<TagIcon />} as={Link} href="/dashboard/contact-responses">
                 Contact Responses
               </Nav.Item>
+              )}
               <Nav.Item eventKey="10" icon={<UserInfoIcon />} as={Link} href="/dashboard/profile">
                 Profile
               </Nav.Item>

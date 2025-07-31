@@ -1,0 +1,13 @@
+import User from "@/lib/models/User";
+import { connectDB } from "@/lib/dbConnect";
+import { verifyToken } from "../middleware";
+
+export async function PATCH(req, { params }) {
+  await connectDB();
+  const { user, error, status } = verifyToken(req);
+  if (error || user.role !== "admin") return new Response(JSON.stringify({ error }), { status });
+
+  const { role } = await req.json();
+  const updated = await User.findByIdAndUpdate(params.id, { role }, { new: true });
+  return Response.json(updated);
+}

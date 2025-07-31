@@ -1,10 +1,12 @@
 "use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterMain() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -16,8 +18,8 @@ export default function RegisterMain() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setError(''); // Clear errors on input change
-    setSuccess(''); // Clear success message on input change
+    setError('');
+    setSuccess('');
   };
 
   const handleRegister = async (e) => {
@@ -26,9 +28,9 @@ export default function RegisterMain() {
     setSuccess('');
     setIsLoading(true);
 
-    const { name, email, password, confirmPassword } = formData;
+    const { fullName, email, password, confirmPassword } = formData;
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!fullName || !email || !password || !confirmPassword) {
       setError('All fields are required.');
       setIsLoading(false);
       return;
@@ -47,24 +49,32 @@ export default function RegisterMain() {
     }
 
     try {
-      // Simulate an API call for registration
-      // In a real application, you would send a POST request to your registration endpoint
-      // const response = await fetch('/api/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ name, email, password }),
-      // });
-      // const data = await response.json();
+      const response = await fetch('/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: fullName,
+          email,
+          password,
+        }),
+      });
 
-      setTimeout(() => {
-        // Simulate successful registration
-        setSuccess('Registration successful! You can now log in.');
-        setFormData({ name: '', email: '', password: '', confirmPassword: '' }); // Clear form
-        console.log('Registration successful for:', { name, email });
-        // Optionally redirect to login page or dashboard
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'Registration failed.');
         setIsLoading(false);
-      }, 2000); // Simulate network delay
+        return;
+      }
 
+      setSuccess('Registration successful! You can now log in.');
+      setFormData({ fullName: '', email: '', password: '', confirmPassword: '' });
+      setIsLoading(false);
+
+      // Redirect to dashboard after a short delay
+      setTimeout(() => {
+        router.push('/dashboard/my-account');
+      }, 800);
     } catch (err) {
       setError('An error occurred during registration. Please try again.');
       setIsLoading(false);
@@ -87,7 +97,7 @@ export default function RegisterMain() {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleRegister}>
           {error && (
-            <div className="bg-red-100 border border-green-400 text-green-700 px-4 py-3 rounded-md relative" role="alert">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md relative" role="alert">
               <span className="block sm:inline">{error}</span>
             </div>
           )}
@@ -98,16 +108,16 @@ export default function RegisterMain() {
           )}
           <div className="rounded-md shadow-sm -space-y-px">
             <div className='mb-3'>
-              <label htmlFor="name" className="">Full Name</label>
+              <label htmlFor="fullName" className="">Full Name</label>
               <input
-                id="name"
-                name="name"
+                id="fullName"
+                name="fullName"
                 type="text"
                 autoComplete="name"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
                 placeholder="Full Name"
-                value={formData.name}
+                value={formData.fullName}
                 onChange={handleInputChange}
               />
             </div>

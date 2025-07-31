@@ -1,8 +1,10 @@
 "use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginMain() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -10,43 +12,43 @@ export default function LoginMain() {
   const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError(''); // Clear previous errors
-    setIsLoading(true);
+  e.preventDefault();
+  setError('');
+  setIsLoading(true);
 
-    if (!email || !password) {
-      setError('Please enter both email and password.');
+  if (!email || !password) {
+    setError('Please enter both email and password.');
+    setIsLoading(false);
+    return;
+  }
+
+  try {
+    const response = await fetch('/api/users/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.message || 'Invalid email or password.');
       setIsLoading(false);
       return;
     }
 
-    try {
-      // Simulate an API call for login
-      // In a real application, you would send a POST request to your authentication endpoint
-      // const response = await fetch('/api/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email, password }),
-      // });
-      // const data = await response.json();
-
-      setTimeout(() => {
-        if (email === 'user@example.com' && password === 'password123') {
-          // Simulate successful login
-          console.log('Login successful!');
-          alert('Login successful! Welcome back.'); // Replace with custom modal or redirection
-          // Redirect user or update authentication state
-        } else {
-          setError('Invalid email or password. Please try again.');
-        }
-        setIsLoading(false);
-      }, 1500); // Simulate network delay
-
-    } catch (err) {
-      setError('An error occurred during login. Please try again.');
-      setIsLoading(false);
+    // ✅ Save token to localStorage
+    if (data.token) {
+      localStorage.setItem('token', data.token);
     }
-  };
+
+    setIsLoading(false);
+    router.push('/dashboard/my-account');
+  } catch (err) {
+    setError('An error occurred during login. Please try again.');
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-sans">

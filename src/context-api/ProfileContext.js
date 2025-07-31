@@ -1,38 +1,46 @@
-// src/context-api/ProfileContext.js
-"use client"; // If you use client-side hooks within your context logic
+"use client";
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { jwtDecode } from "jwt-decode";
 
 const ProfileContext = createContext(null);
 
 export const ProfileProvider = ({ children }) => {
-  // In a real app, you'd fetch user roles/profile from an API or authentication state
   const [profileData, setProfileData] = useState({
     isSuperAdmin: false,
     isClient: false,
     isAdmin: false,
     isAgent: false,
+    user: null,
+    loading: true,
   });
 
+
   useEffect(() => {
-    // Simulate fetching user roles after authentication
-    // Replace with actual logic to get user roles (e.g., from a JWT, database)
-    const fetchUserRoles = async () => {
-      // Example: Fetch from an auth service or local storage
-      const userRole = localStorage.getItem('userRole'); // Dummy example
-      if (userRole === 'admin') {
-        setProfileData({ isSuperAdmin: true, isAgent: false, isAdmin: true, isClient: false });
-      } else if (userRole === 'super admin') {
-        setProfileData({ isAgent: false, isSuperAdmin: true, isAdmin: false, isClient: false });
-      } else if (userRole === 'agent') {
-          setProfileData({ isAgent: true, isSuperAdmin: false, isAdmin: false, isClient: false });
-      } else if (userRole === 'client') {
-          setProfileData({ isAgent: false, isSuperAdmin: false, isAdmin: false, isClient: true });
-      } else {
-        setProfileData({ isAgent: false, isSuperAdmin: false, isAdmin: false, isClient: false });
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        console.log('Decoded JWT:', decoded);
+        const role = decoded.role;
+
+        const roleFlags = {
+          isSuperAdmin: role === "super-admin" || role === "super admin",
+          isAdmin: role === "admin",
+          isAgent: role === "agent",
+          isClient: role === "client",
+          user: decoded,
+          loading: false,
+        };
+        setProfileData(roleFlags);
+      } catch (error) {
+        console.error("Invalid token", error);
+        localStorage.removeItem("token");
+        setProfileData((prev) => ({ ...prev, loading: false }));
       }
-    };
-    fetchUserRoles();
+    } else {
+      setProfileData((prev) => ({ ...prev, loading: false }));
+    }
   }, []);
 
   return (

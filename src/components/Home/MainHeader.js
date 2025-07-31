@@ -50,14 +50,14 @@ export default function MainHeader() {
         <div className="hidden lg:flex items-center space-x-4">
           {/* Login Icon */}
           <div>
-            <Link href="/dashboard/my-account" className="hidden md:inline-flex items-center p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
+            <a href="/dashboard/my-account" className="hidden md:inline-flex items-center p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
               <Image
                 src="/svg/user.svg"
                 alt="Login Icon"
                 width={32}
                 height={32}
               />
-            </Link>
+            </a>
           </div>
 
           {/* Get A Quote Button */}
@@ -66,17 +66,18 @@ export default function MainHeader() {
           </Link>
         </div>
 
+        {/* Mobile Account Icon and Hamburger Menu */}
         <div className="flex flex-row lg:hidden">
-            <Link href="/dashboard/my-account" className="flex items-center p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
-              <Image
-                src="/svg/user.svg"
-                alt="Login Icon"
-                width={30}
-                height={30}
-              />
-            </Link>
+          <a href="/dashboard/my-account" className="flex items-center p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
+            <Image
+              src="/svg/user.svg"
+              alt="Login Icon"
+              width={30}
+              height={30}
+            />
+          </a>
           
-        {/* Hamburger Menu (Mobile) */}
+          {/* Hamburger Menu (Mobile) */}
           <button
             className="lg:hidden flex items-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-300"
             onClick={() => setMenuOpen(!menuOpen)}

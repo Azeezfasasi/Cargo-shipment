@@ -70,7 +70,7 @@ export default function HowItWorks() {
       <div className="container mx-auto flex flex-col lg:flex-row gap-12">
         {/* Left Section: How It Works */}
         <div className="lg:w-1/2 w-full">
-          <h3 className="text-red-600 text-sm uppercase tracking-widest mb-2">How It Work?</h3>
+          <h3 className="text-green-600 text-sm uppercase tracking-widest mb-2">How It Work?</h3>
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-10">
             The Amazing Steps Of Our Services
           </h2>
@@ -78,7 +78,7 @@ export default function HowItWorks() {
           <div className="space-y-8">
             {steps.map((step) => (
               <div key={step.number} className="flex items-start">
-                <div className="flex-shrink-0 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
                   {step.number}
                 </div>
                 <div>
@@ -91,7 +91,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Right Section: Get In Touch Form */}
-        <div className="lg:w-1/2 w-full bg-red-600 p-8 md:p-12 rounded-lg shadow-xl">
+        <div className="lg:w-1/2 w-full bg-green-600 p-8 md:p-12 rounded-lg shadow-xl">
           <h2 className="text-3xl font-extrabold text-white mb-8">Get In Touch</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -101,7 +101,7 @@ export default function HowItWorks() {
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
                 required
               />
             </div>
@@ -112,7 +112,7 @@ export default function HowItWorks() {
                 placeholder="Your Email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
                 required
               />
             </div>
@@ -123,7 +123,7 @@ export default function HowItWorks() {
                 placeholder="Your Phone Number"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -148,7 +148,7 @@ export default function HowItWorks() {
                 placeholder="Origin (e.g., City, Country)"
                 value={formData.origin}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -158,7 +158,7 @@ export default function HowItWorks() {
                 placeholder="Destination (e.g., City, Country)"
                 value={formData.destination}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -168,7 +168,7 @@ export default function HowItWorks() {
                 placeholder="Cargo Weight (e.g., in kg or lbs)"
                 value={formData.weight}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -178,7 +178,7 @@ export default function HowItWorks() {
                 placeholder="Cargo Dimensions (e.g., L x W x H in cm)"
                 value={formData.dimensions}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -188,7 +188,7 @@ export default function HowItWorks() {
                 rows="5"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
                 required
               ></textarea>
             </div>

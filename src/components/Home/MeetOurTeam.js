@@ -60,7 +60,7 @@ export default function MeetOurTeam() {
               />
               <div className="p-6 text-center">
                 <h4 className="text-xl font-bold text-gray-900">{member.name}</h4>
-                <p className="text-red-600 font-semibold mb-3">{member.role}</p>
+                <p className="text-green-600 font-semibold mb-3">{member.role}</p>
                 <p className="text-gray-700 text-sm">{member.description}</p>
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function MeetOurTeam() {
 
         {/* Right Section: About Our Team & Owner Highlight */}
         <div className="lg:w-1/3 w-full bg-white p-8 rounded-lg shadow-md">
-          <h3 className="text-red-600 text-sm uppercase tracking-widest mb-2">WHO WE ARE</h3>
+          <h3 className="text-green-600 text-sm uppercase tracking-widest mb-2">WHO WE ARE</h3>
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-8">
             About Our Team
           </h2>
@@ -82,12 +82,12 @@ export default function MeetOurTeam() {
             <Image
               src={owner.image}
               alt={owner.name}
-              className="w-24 h-24 rounded-full object-cover object-center border-4 border-red-600 mb-4"
+              className="w-24 h-24 rounded-full object-cover object-center border-4 border-green-600 mb-4"
               width={96}
               height={96}
             />
             <h4 className="text-xl font-bold text-gray-900">{owner.name}</h4>
-            <p className="text-red-600 font-semibold mb-4">{owner.role}</p>
+            <p className="text-green-600 font-semibold mb-4">{owner.role}</p>
             <p className="text-gray-700 italic relative">
               <span className="absolute -top-2 -left-4 text-4xl text-gray-400 opacity-50">&ldquo;</span>
               {owner.quote}

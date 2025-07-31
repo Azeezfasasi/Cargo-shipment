@@ -28,7 +28,7 @@ export default function Footer() {
           <div className="flex items-center space-x-2 mb-4">
             {/* Using an SVG for the logo as it's scalable and matches the image */}
             <svg
-              className="w-8 h-8 text-red-600"
+              className="w-8 h-8 text-green-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -54,7 +54,7 @@ export default function Footer() {
           <ul className="space-y-2">
             {quickLinks.map((link, index) => (
               <li key={index}>
-                <a href={link.href} className="text-gray-300 hover:text-red-600 transition duration-200">
+                <a href={link.href} className="text-gray-300 hover:text-green-600 transition duration-200">
                   {link.name}
                 </a>
               </li>
@@ -68,7 +68,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
             {cargoServices.map((service, index) => (
               <li key={index} className="list-none">
-                <a href="#" className="text-gray-300 hover:text-red-600 transition duration-200">
+                <a href="#" className="text-gray-300 hover:text-green-600 transition duration-200">
                   {service}
                 </a>
               </li>

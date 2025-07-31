@@ -1,3 +1,7 @@
+import ContactFormSection from "@/components/Home/ContactFormSection";
+import ContactHero from "@/components/Home/ContactHero";
+import ContactInfo from "@/components/Home/ContactInfo";
+import Footer from "@/components/Home/Footer";
 import MainHeader from "@/components/Home/MainHeader";
 
 export const metadata = {
@@ -20,7 +24,11 @@ export const metadata = {
 export default function ContactUs() {
   return (
     <>
-    <MainHeader />
+      <MainHeader />
+      <ContactHero />
+      <ContactInfo />
+      <ContactFormSection />
+      <Footer />
     </>
   );
 }

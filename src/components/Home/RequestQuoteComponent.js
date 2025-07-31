@@ -69,7 +69,7 @@ export default function RequestQuoteComponent() {
     <section className="bg-white font-sans py-16 px-4">
       <div className="container mx-auto flex flex-col lg:flex-row justify-center gap-12">
         {/* Right Section: Get In Touch Form */}
-        <div className="lg:w-1/2 w-full bg-red-600 p-8 md:p-12 rounded-lg shadow-xl">
+        <div className="lg:w-1/2 w-full bg-green-600 p-8 md:p-12 rounded-lg shadow-xl">
           <h2 className="text-3xl font-extrabold text-white mb-8">Request a Free Quote</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -79,7 +79,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
                 required
               />
             </div>
@@ -90,7 +90,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Your Email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
                 required
               />
             </div>
@@ -101,7 +101,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Your Phone Number"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -126,7 +126,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Origin (e.g., City, Country)"
                 value={formData.origin}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -136,7 +136,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Destination (e.g., City, Country)"
                 value={formData.destination}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -146,7 +146,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Cargo Weight (e.g., in kg or lbs)"
                 value={formData.weight}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -156,7 +156,7 @@ export default function RequestQuoteComponent() {
                 placeholder="Cargo Dimensions (e.g., L x W x H in cm)"
                 value={formData.dimensions}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
               />
             </div>
             <div>
@@ -166,7 +166,7 @@ export default function RequestQuoteComponent() {
                 rows="5"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="w-full p-3 rounded-md bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300"
                 required
               ></textarea>
             </div>

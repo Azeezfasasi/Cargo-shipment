@@ -73,7 +73,7 @@ export default function TrackShipmentComponent() {
     <section className="bg-gray-50 py-16 px-4 font-sans">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-          Track Your <span className="text-red-600">Shipment</span>
+          Track Your <span className="text-green-600">Shipment</span>
         </h2>
         <p className="text-gray-700 text-lg mb-10 max-w-2xl mx-auto">
             Enter your tracking number below to get real-time updates on your {`cargo's`} journey.
@@ -85,13 +85,13 @@ export default function TrackShipmentComponent() {
             placeholder="Enter Tracking Number E.g: 123456789"
             value={trackingNumber}
             onChange={handleTrackingChange}
-            className="w-full md:w-1/2 lg:w-1/3 p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-800"
+            className="w-full md:w-1/2 lg:w-1/3 p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
             aria-label="Tracking Number"
             required
           />
           <button
             type="submit"
-            className="w-full md:w-auto px-8 py-4 bg-red-600 text-white font-bold rounded-lg shadow-md hover:bg-red-700 transition duration-300 ease-in-out flex items-center justify-center"
+            className="w-full md:w-auto px-8 py-4 bg-green-600 text-white font-bold rounded-lg shadow-md hover:bg-green-700 transition duration-300 ease-in-out flex items-center justify-center"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -120,7 +120,7 @@ export default function TrackShipmentComponent() {
         </form>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md relative max-w-md mx-auto" role="alert">
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md relative max-w-md mx-auto" role="alert">
             <span className="block sm:inline">{error}</span>
           </div>
         )}
@@ -139,7 +139,7 @@ export default function TrackShipmentComponent() {
               {trackingResult.details.map((event, index) => (
                 <div key={index} className="flex items-start">
                   <div className="flex flex-col items-center mr-4">
-                    <div className="w-4 h-4 bg-red-600 rounded-full flex-shrink-0"></div>
+                    <div className="w-4 h-4 bg-green-600 rounded-full flex-shrink-0"></div>
                     {index < trackingResult.details.length - 1 && (
                       <div className="w-0.5 h-full bg-gray-300 mt-1 flex-grow"></div>
                     )}
